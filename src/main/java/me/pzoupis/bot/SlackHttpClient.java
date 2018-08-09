@@ -14,22 +14,28 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class ResponseHelper {
+@Component
+public class SlackHttpClient {
     
-    private final static Logger LOGGER = Logger.getLogger(ResponseHelper.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(SlackHttpClient.class.getName());
 
-    public static void postText(String channel, String text) {
+    @Value("${slack.post.url}")
+    private String slackPostUrl;
+
+    public void postText(String channel, String text) {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("text", text));
         params.add(new BasicNameValuePair("channel", channel));
         postMethod(params);
     }
 
-    private static void postMethod(List<NameValuePair> params) {
+    private void postMethod(List<NameValuePair> params) {
         try {
             CloseableHttpClient client = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost("https://slack.com/api/chat.postMessage");
+            HttpPost httpPost = new HttpPost(slackPostUrl);
             httpPost.addHeader("Authorization", "Bearer " + System.getenv("BOT_USER_OAUTH_ACCESS_TOKEN"));
             httpPost.setEntity(new UrlEncodedFormEntity(params));
             CloseableHttpResponse response = client.execute(httpPost);
