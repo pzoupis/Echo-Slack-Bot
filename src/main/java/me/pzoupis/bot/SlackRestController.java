@@ -15,7 +15,7 @@ class SlackRestController {
 
     @PostMapping
     String postRequest(@RequestBody SlackEvent input) {
-        LOGGER.info("Received request.");
+        LOGGER.info(input.toString());
         if(input.getChallenge() != null) {
             return input.getChallenge();
         } else {
