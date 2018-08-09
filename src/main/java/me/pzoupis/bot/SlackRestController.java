@@ -37,6 +37,7 @@ class SlackRestController {
             try {
                 CloseableHttpClient client = HttpClients.createDefault();
                 HttpPost httpPost = new HttpPost("https://slack.com/api/chat.postMessage");
+                httpPost.addHeader("Authorization", "Bearer xoxb-355280296021-410146949200-MCo6HtFAxuHJ6HIVOVfVWJgp");
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("text", input.getEvent().getText()));
                 params.add(new BasicNameValuePair("channel", input.getEvent().getChannel()));
