@@ -113,8 +113,16 @@ public class SlackEvent {
         "\nEvent: " + event.toString() +
         "\nteam_id: " + team_id +
         "\napi_app_id: " + api_app_id +
-        "\nauthed_users: " + authed_users +
+        "\nauthed_users: " + printAuthedUsers() +
         "\nevent_id: " + event_id +
         "\nevent_time: " + event_time;
+    }
+
+    private String printAuthedUsers() {
+        String authedUsers = "";
+        for (String authed_user : authed_users) {
+            authedUsers = authedUsers + ", " + authed_user;
+        }
+        return authedUsers;
     }
 }
