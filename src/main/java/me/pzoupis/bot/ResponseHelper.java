@@ -30,7 +30,7 @@ public class ResponseHelper {
         try {
             CloseableHttpClient client = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost("https://slack.com/api/chat.postMessage");
-            httpPost.addHeader("Authorization", "Bearer xoxb-355280296021-410146949200-MCo6HtFAxuHJ6HIVOVfVWJgp");
+            httpPost.addHeader("Authorization", "Bearer " + System.getenv("BOT_USER_OAUTH_ACCESS_TOKEN"));
             httpPost.setEntity(new UrlEncodedFormEntity(params));
             CloseableHttpResponse response = client.execute(httpPost);
             LOGGER.info("Response from slack was: " + response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase());

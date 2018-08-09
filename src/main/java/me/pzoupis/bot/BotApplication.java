@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class BotApplication {
-
+	
 	private final static Logger LOGGER = Logger.getLogger(BotApplication.class.getName());
 	public static void main(String[] args) {
 		LOGGER.info("Bot application is starting...");

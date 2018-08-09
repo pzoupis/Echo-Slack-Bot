@@ -121,7 +121,7 @@ public class SlackEvent {
     private String printAuthedUsers() {
         String authedUsers = "";
         for (String authed_user : authed_users) {
-            authedUsers = authedUsers + ", " + authed_user;
+            authedUsers = authed_user + ", " + authedUsers;
         }
         return authedUsers;
     }

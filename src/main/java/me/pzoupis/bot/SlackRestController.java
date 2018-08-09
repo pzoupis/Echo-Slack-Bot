@@ -2,6 +2,7 @@ package me.pzoupis.bot;
 
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,12 @@ class SlackRestController {
 
     private final static Logger LOGGER = Logger.getLogger(BotApplication.class.getName());
 
+    @Value("${slack.post.url}")
+    private String slackPostUrl;
+    
     @PostMapping
     String postRequest(@RequestBody SlackEvent input) {
+        LOGGER.info(slackPostUrl);
         LOGGER.info(input.toString());
 
         if(input.getType().equalsIgnoreCase("url_verification")) {
