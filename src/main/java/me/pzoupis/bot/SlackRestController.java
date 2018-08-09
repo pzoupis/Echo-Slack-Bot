@@ -20,7 +20,7 @@ class SlackRestController {
         if(input.getType().equalsIgnoreCase("url_verification")) {
             LOGGER.info("url_verification event");
             return input.getChallenge();
-        } else if(input.getType().equalsIgnoreCase("app_mention")) {
+        } else if(input.getEvent().getType().equalsIgnoreCase("app_mention")) {
             LOGGER.info("app_mention event");
             String text = input.getEvent().getText();
             text = text.replace("<@UC24ATX5W>", "");
